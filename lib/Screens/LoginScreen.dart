@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:ecommerce_crazliv/Screens/DashBoard.dart';
 import 'package:ecommerce_crazliv/Screens/SignUp.dart';
 import 'package:flutter/material.dart';

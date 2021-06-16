@@ -1,4 +1,6 @@
-import 'package:ecommerce_crazliv/Icon/my_flutter_app_icons.dart';
+// @dart=2.9
+ import 'package:ecommerce_crazliv/Icon/my_flutter_app_icons.dart';
+import 'package:ecommerce_crazliv/Screens/OrderSummary.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_crazliv/Constants.dart';
 import 'package:flutter/rendering.dart';
@@ -25,7 +27,7 @@ class _CartState extends State<Cart> {
       'description': '',
       'url': 'images/eg-2.jpg'
     },
-];
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +57,7 @@ class _CartState extends State<Cart> {
           ),
         ),
         title: Text(
-          'Back to Home',
+          'My Cart',
           style: TextStyle(
             color: black,
             fontFamily: 'Quicksand',
@@ -64,17 +66,12 @@ class _CartState extends State<Cart> {
       ),
       body: SingleChildScrollView(
         physics: ScrollPhysics(),
-        child: Column(children: [
-          productsList(),
-          bill(),
-          checkOutButton()
-        ]),
+        child: Column(children: [productsList(), bill(), placeOrderButton()]),
       ),
     );
   }
 
-
-  Widget productsList(){
+  Widget productsList() {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: ListView.builder(
@@ -103,14 +100,12 @@ class _CartState extends State<Cart> {
                             child: SizedBox(
                                 height: 70,
                                 width: 50,
-                                child:
-                                Image.asset(products[index]['url'])),
+                                child: Image.asset(products[index]['url'])),
                           ),
                           Expanded(
                             flex: 2,
                             child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   products[index]['title'],
@@ -157,11 +152,11 @@ class _CartState extends State<Cart> {
                           Container(
                             height: 35.0,
                             width: 35,
+                            // ignore: deprecated_member_use
                             child: RaisedButton(
                               elevation: 0.5,
                               shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(0.0),
                                   side: BorderSide(
                                       color: Colors.grey, width: 0.5)),
                               onPressed: () {
@@ -185,10 +180,10 @@ class _CartState extends State<Cart> {
                             width: 35,
                             decoration: BoxDecoration(
                               border: Border.symmetric(
-                                vertical: BorderSide(
-                                    color: Colors.grey, width: 0.5),
-                                horizontal: BorderSide(
-                                    color: Colors.grey, width: 0.5),
+                                vertical:
+                                    BorderSide(color: Colors.grey, width: 0.5),
+                                horizontal:
+                                    BorderSide(color: Colors.grey, width: 0.5),
                               ),
                               borderRadius: BorderRadius.circular(0),
                             ),
@@ -196,19 +191,18 @@ class _CartState extends State<Cart> {
                               child: Text(
                                 products[index]['quantity'].toString(),
                                 style: TextStyle(
-                                    color: black,
-                                    fontWeight: FontWeight.bold),
+                                    color: black, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
                           Container(
                             height: 35.0,
                             width: 35,
+                            // ignore: deprecated_member_use
                             child: RaisedButton(
                               elevation: 0.5,
                               shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(0.0),
+                                  borderRadius: BorderRadius.circular(0.0),
                                   side: BorderSide(
                                       color: Colors.grey, width: 0.5)),
                               onPressed: () {
@@ -253,9 +247,10 @@ class _CartState extends State<Cart> {
           }),
     );
   }
+
   Widget bill(){
     return Padding(
-      padding: const EdgeInsets.all(19.0),
+      padding: const EdgeInsets.all(14.0),
       child: Container(
           height: 170,
           width: MediaQuery.of(context).size.width,
@@ -264,34 +259,56 @@ class _CartState extends State<Cart> {
             color: Colors.white,
           ),
           child:Padding(
-            padding: const EdgeInsets.all(28.0),
+            padding: const EdgeInsets.all(13.0),
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text('Price Details:', style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                      fontFamily: 'Quicksand',
+                    ),),
+                  ],
+                ),
+                Divider(thickness: 0.2,color: Colors.grey,),
+                Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:[
-                      Text('Product Quantity:', style: TextStyle(
+                      Text('Quantity:', style: TextStyle(
                         fontSize: 16,
                         color: black,
                         fontFamily: 'Quicksand',
                       ),),
-                      Text('2',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 16),),
+                      Text('2',style: TextStyle(color: Colors.black,fontSize: 16),),
                     ]
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:[
-                      Text('Product Price:', style: TextStyle(
+                      Text('Price:', style: TextStyle(
                         fontSize: 16,
                         color: black,
                         fontFamily: 'Quicksand',
                       ),),
-                      Text('₹200000',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 16),),
+                      Text('₹200000',style: TextStyle(color: Colors.black,fontSize: 16),),
                     ]
                 ),
-                SizedBox(height: 10,),
-                Divider(color: Colors.grey,),
-                SizedBox(height: 10,),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children:[
+                      Text('Delivery Charges:', style: TextStyle(
+                        fontSize: 16,
+                        color: black,
+                        fontFamily: 'Quicksand',
+                      ),),
+                      Text('FREE',style: TextStyle(color: Colors.green,fontSize: 16),),
+                    ]
+                ),
+                SizedBox(height: 5,),
+                Divider(color: Colors.grey,thickness: 0.2,),
+                SizedBox(height: 5,),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:[
@@ -310,11 +327,16 @@ class _CartState extends State<Cart> {
       ),
     );
   }
-  Widget checkOutButton(){
-    return  Padding(
+
+  Widget placeOrderButton() {
+    return Padding(
       padding: const EdgeInsets.all(20.0),
       child: MaterialButton(
         onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) {
+            return OrderSummary(products: products,);
+          }));
         },
         color: black,
         child: Padding(
@@ -323,7 +345,7 @@ class _CartState extends State<Cart> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Proceed to checkout',
+                'Place Order',
                 style: TextStyle(
                   fontFamily: 'Quicksand',
                 ),

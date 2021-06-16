@@ -1,4 +1,5 @@
-import 'package:ecommerce_crazliv/Icon/my_flutter_app_icons.dart';
+// @dart=2.9
+import 'package:ecommerce_crazliv/Screens/Address_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_crazliv/Constants.dart';
@@ -233,7 +234,11 @@ Widget userDetails(){
                               style: TextStyle(color: Colors.grey, fontSize: 35),
                             ),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                    return AddressForm();
+                                  }));
+                                },
                                 child: Row(
                                   children: [
                                     Icon(
@@ -266,6 +271,7 @@ Widget userDetails(){
       child: Container(
         height: 45.0,
         width: MediaQuery.of(context).size.width,
+        // ignore: deprecated_member_use
         child: RaisedButton(
           elevation: 0.2,
           shape: RoundedRectangleBorder(

@@ -1,4 +1,4 @@
-import 'package:ecommerce_crazliv/Icon/my_flutter_app_icons.dart';
+// @dart=2.9
 import 'package:ecommerce_crazliv/Screens/ProductDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_crazliv/Constants.dart';
@@ -158,6 +158,7 @@ class _MyOrdersState extends State<MyOrders> {
                       Container(
                         height: 50,
                         width: MediaQuery.of(context).size.width,
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           elevation: 0.5,
                           shape: RoundedRectangleBorder(
@@ -187,6 +188,7 @@ class _MyOrdersState extends State<MyOrders> {
                       Container(
                         height: 50,
                         width: MediaQuery.of(context).size.width,
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           elevation: 0.5,
                           shape: RoundedRectangleBorder(

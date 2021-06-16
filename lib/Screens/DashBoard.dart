@@ -1,5 +1,7 @@
+// @dart=2.9
 import 'package:ecommerce_crazliv/Icon/my_flutter_app_icons.dart';
 import 'package:ecommerce_crazliv/Screens/Cart.dart';
+import 'package:ecommerce_crazliv/Screens/CategorisedScreen.dart';
 import 'package:ecommerce_crazliv/Screens/MyAccount.dart';
 import 'package:ecommerce_crazliv/Screens/MyOrders.dart';
 import 'package:ecommerce_crazliv/Screens/NotificationScreen.dart';
@@ -367,7 +369,7 @@ class _DashBoardState extends State<DashBoard> {
           padding: const EdgeInsets.all(2.0),
           child: IconButton(
               onPressed: () {
-                _key.currentState!.openDrawer();
+                _key.currentState.openDrawer();
               },
               icon: Icon(
                 Icons.short_text,
@@ -495,28 +497,34 @@ class _DashBoardState extends State<DashBoard> {
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(7.0),
-                  child: Container(
-                      width: 160,
-                      decoration: BoxDecoration(
-                          image: new DecorationImage(
-                              fit: BoxFit.cover,
-                              colorFilter: ColorFilter.mode(
-                                  Colors.black.withOpacity(0.5),
-                                  BlendMode.dstATop),
-                              image: AssetImage(categories[index]['url'])),
-                          color: black,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 37.0, left: 15),
-                        child: Text(
-                          categories[index]['title'],
-                          style: TextStyle(
-                              fontFamily: 'Quicksand',
-                              fontSize: 16,
-                              color: Colors.white,
-                              letterSpacing: 1.0),
-                        ),
-                      )),
+                  child: GestureDetector(
+                    onTap:(){
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => CategorisedScreen(category: categories[index]['title'],)));
+                    },
+                    child: Container(
+                        width: 160,
+                        decoration: BoxDecoration(
+                            image: new DecorationImage(
+                                fit: BoxFit.cover,
+                                colorFilter: ColorFilter.mode(
+                                    Colors.black.withOpacity(0.5),
+                                    BlendMode.dstATop),
+                                image: AssetImage(categories[index]['url'])),
+                            color: black,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 37.0, left: 15),
+                          child: Text(
+                            categories[index]['title'],
+                            style: TextStyle(
+                                fontFamily: 'Quicksand',
+                                fontSize: 16,
+                                color: Colors.white,
+                                letterSpacing: 1.0),
+                          ),
+                        )),
+                  ),
                 );
               }),
         ),

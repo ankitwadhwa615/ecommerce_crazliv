@@ -1,4 +1,5 @@
-import 'package:ecommerce_crazliv/Screens/DashBoard.dart';
+// @dart=2.9
+ import 'package:ecommerce_crazliv/Screens/DashBoard.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_crazliv/Constants.dart';
 
